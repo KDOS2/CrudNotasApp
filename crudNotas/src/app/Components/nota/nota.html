@@ -1,0 +1,120 @@
+<div class="page-container">
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()" autocomplete="off" class="student-form">
+    
+  <div class="row mb-3">
+
+    <div class="row mb-3">
+        <!-- Primera fila -->
+        <div class="col-md-6">
+        <label for="nombre" class="form-label">Materia</label>
+        <input type="text" id="nombre" class="form-control" formControlName="nombre" placeholder="Ingrese materia">
+        <div *ngIf="noteForm.get('nombre')?.invalid && noteForm.get('nombre')?.touched" class="text-danger" style="color: orange">
+            Materia requerido
+        </div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="valor" class="form-label">Nota</label>
+            <input type="text" id="valor" class="form-control" formControlName="valor" placeholder="Ingrese nota" appDirectiveNumber>
+            <div *ngIf="noteForm.get('valor')?.invalid && noteForm.get('valor')?.touched" class="text-danger" style="color: orange">
+                Nota requerida
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label for="idprofesor" class="form-label">Profesor</label>
+            <select id="idprofesor" class="form-select" formControlName="idprofesor">
+            <option value="">Seleccione un profesor</option>
+            <option *ngFor="let pro of profesores" [value]="pro.id">{{ pro.nombre }}</option>
+            </select>
+            <div *ngIf="noteForm.get('idprofesor')?.invalid && noteForm.get('idprofesor')?.touched" class="text-danger" style="color: orange">
+                Profesor requerido
+            </div>      
+        </div>
+
+        <div class="col-md-6">
+            <label for="idestudiante" class="form-label">Estudiante</label>
+            <select id="idestudiante" class="form-select" formControlName="idestudiante">
+            <option value="">Seleccione un estudiante</option>
+            <option *ngFor="let est of estudiantes" [value]="est.id">{{ est.nombre }}</option>
+            </select>
+            <div *ngIf="noteForm.get('idestudiante')?.invalid && noteForm.get('idestudiante')?.touched" class="text-danger" style="color: orange">
+                Estudiante requerido
+            </div>      
+        </div>
+    </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary" [disabled]="noteForm.invalid || idNota > 0">Guardar</button>
+  </div>
+
+    <div class="row mt-4" *ngIf="totalitems > 0">
+      <div class="col-12">
+        
+        <table class="table table-bordered table-striped text-center">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Materia</th>
+              <th>Profesor</th>
+              <th>Estudiante</th>
+              <th>Nota</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of nota | paginate: { itemsPerPage: totalByPage, currentPage: p, totalItems: totalitems }" class="trStyle">
+                <td scope="row" class="accionsLook">
+                    <i class="fa-solid fa-user-xmark accions" style="color: red;" (click)="CleanObject(); Inactivate(item); modalInactive.show = true"></i>
+                    &nbsp;
+                    <i class="fa-solid fa-user-pen accions" (click)="CleanObject(); UpdateNota(item);"></i>
+                </td>
+                <td>{{ item.nombre }}</td>
+                <td>{{ item.nombreProfesor }}</td>
+                <td>{{ item.nombreEstudiante }}</td>
+                <td>{{ item.valor }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination-container" *ngIf="totalitems>0">
+            <pagination-controls 
+                (pageChange)="LoadPage($event)" 
+                [maxSize]="5"
+                [responsive]="true"
+                [autoHide]="false"
+                previousLabel="Anterior"
+                nextLabel="Siguiente">
+            </pagination-controls>
+            <div class="icon-select-container linkUser">
+                <select class="custom-select" [(ngModel)]="totalByPage" [ngModelOptions]="{standalone: true}"  (change)="onPageSizeChange()">
+                    <option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</option>
+                </select>         
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+</div>
+
+<app-genericmessage [title]="'Confirmar.'" #modalInactive [style]="'small'">
+    <div>
+        <div style="padding-bottom:1rem; align-items: center;">
+            <div>{{this.messageConst.confirmDelete}}</div>
+        </div>
+        <div class="form-group" style="width: 100%; display: flex; justify-content: flex-end;">
+            <button type="button" (click)="DeleteNota()">Aceptar</button>
+        </div>        
+    </div>
+</app-genericmessage>
+
+<ngx-spinner 
+    bdColor = "rgba(0, 0, 0, 0.8)" 
+    size = "large" 
+    color = "#ff0000" 
+    type = "ball-scale-ripple-multiple" 
+    [fullScreen] = "true">
+    <p style="color: white" > Espera un momento.... </p>
+</ngx-spinner>

@@ -1,0 +1,88 @@
+@use '../../../Scss/StylesObjects.scss';
+
+.student-form {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+
+  .row {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+
+    .col-md-6 {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      input.form-control {
+        margin-top: 5px;
+      }
+
+      .text-danger {
+        margin-top: 5px;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  .btn {
+    width: 150px;
+    margin-top: 10px;
+  }
+}
+
+.student-info-container {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+  animation: fadeInInfo 0.25s ease-out;
+
+  .info-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #333;
+  }
+
+  .info-item {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+
+    .label {
+      font-weight: 600;
+      color: #555;
+    }
+
+    .value {
+      color: #222;
+      font-weight: 400;
+    }
+  }
+}
+
+@keyframes fadeInInfo {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

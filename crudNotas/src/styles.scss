@@ -1,0 +1,31 @@
+$famyly-font: 'Comfortaa','Roboto';
+input,
+textarea,
+label,
+button,
+select,
+div{
+    font-family: $famyly-font;
+}
+
+input,
+select,
+button{
+      margin-top: 5px;
+      height: 42px; // altura fija
+      padding: 8px 12px; // padding interno
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+button{
+      &:not(:disabled) {
+        cursor: pointer;
+      }
+      &:not(:disabled):hover {
+            color: white; 
+            background-color: black;
+        }
+}

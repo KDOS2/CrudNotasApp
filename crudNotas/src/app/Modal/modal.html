@@ -1,0 +1,15 @@
+<ng-container *ngIf="show">
+    <div [ngClass]="{'modalc': styleScss === 'small', 'modalcLong': styleScss === 'long'}" #genericModal>
+        <div [ngClass]="{'modalc-content': styleScss === 'small', 'modalcLong-content': styleScss === 'long'}">
+            <div [ngClass]="{'modalc-header': styleScss === 'small', 'modalcLong-header': styleScss === 'long'}" style=" background-color: #212529;">
+                <h4 [ngClass]="{'modalc-title': styleScss === 'small', 'modalcLong-title': styleScss === 'long'}" style="color: #fff;">
+                    {{title}}
+                </h4>
+                <i class="fa-solid fa-circle-xmark colorClose" (click)="show = false"></i>            
+            </div>
+            <div [ngClass]="{'modalc-container': styleScss === 'small', 'modalcLong-container': styleScss === 'long'}" [ngStyle]="{'font-size': '1rem;'}">
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </div>
+</ng-container>

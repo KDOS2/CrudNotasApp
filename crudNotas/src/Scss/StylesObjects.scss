@@ -1,0 +1,24 @@
+button {
+  background-color: gray;
+  border: none;    
+  outline: none;   
+  border-radius: 6px;
+
+  &:is(:disabled) {
+    background-color: gray;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &:not(:disabled):hover {
+    color: white;
+    background-color: black;
+  }
+}
+.accions{
+    cursor: pointer;
+}

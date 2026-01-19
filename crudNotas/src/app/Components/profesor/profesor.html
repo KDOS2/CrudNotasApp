@@ -1,0 +1,78 @@
+<div class="page-container">
+<form [formGroup]="teacherForm" (ngSubmit)="onSubmit()" autocomplete="off" class="student-form">
+    
+  <div class="row mb-3">
+    <!-- Primera fila -->
+    <div class="col-md-6">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" id="nombre" class="form-control" formControlName="nombre" placeholder="Ingrese nombre del profesor">
+      <div *ngIf="teacherForm.get('nombre')?.invalid && teacherForm.get('nombre')?.touched" class="text-danger" style="color: orange">
+        Nombre es requerido
+      </div>
+    </div>    
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary" [disabled]="teacherForm.invalid || idTeacher > 0">Guardar</button>
+  </div>
+
+    <div class="row mt-4" *ngIf="totalitems > 0">
+      <div class="col-12">
+        
+        <table class="table table-bordered table-striped text-center">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Nombre estudiante</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of Profesor | paginate: { itemsPerPage: totalByPage, currentPage: p, totalItems: totalitems }" class="trStyle">
+                <td scope="row" class="accionsLook">
+                    <i class="fa-solid fa-user-xmark accions" style="color: red;" (click)="CleanObject(); Inactivate(item); modalInactive.show = true"></i>
+                    &nbsp;
+                    <i class="fa-solid fa-user-pen accions" (click)="CleanObject(); UpdateProfesor(item);"></i>
+                </td>
+                <td>{{ item.nombre }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination-container" *ngIf="totalitems>0">
+            <pagination-controls 
+                (pageChange)="LoadPage($event)" 
+                [maxSize]="5"
+                [responsive]="true"
+                [autoHide]="false"
+                previousLabel="Anterior"
+                nextLabel="Siguiente">
+            </pagination-controls>
+            <div class="icon-select-container linkUser">
+                <select class="custom-select" [(ngModel)]="totalByPage" [ngModelOptions]="{standalone: true}"  (change)="onPageSizeChange()">
+                    <option *ngFor="let size of pageSizeOptions" [value]="size">{{ size }}</option>
+                </select>         
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+</div>
+
+<app-genericmessage [title]="'Confirmar.'" #modalInactive [style]="'small'">
+    <div>
+        <div style="padding-bottom:1rem; align-items: center;">
+            <div>{{this.messageConst.confirmDelete}}</div>
+        </div>
+        <div class="form-group" style="width: 100%; display: flex; justify-content: flex-end;">
+            <button type="button" (click)="DeleteProfesor()">Aceptar</button>
+        </div>        
+    </div>
+</app-genericmessage>
+
+<ngx-spinner 
+    bdColor = "rgba(0, 0, 0, 0.8)" 
+    size = "large" 
+    color = "#ff0000" 
+    type = "ball-scale-ripple-multiple" 
+    [fullScreen] = "true">
+    <p style="color: white" > Espera un momento.... </p>
+</ngx-spinner>

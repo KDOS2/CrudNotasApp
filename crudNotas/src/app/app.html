@@ -1,0 +1,11 @@
+<header>
+  <nav class="menu-horizontal">
+    <a routerLink="estudiante" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Estudiantes</a>
+    <a routerLink="profesor" routerLinkActive="active">Profesores</a>
+    <a routerLink="nota" routerLinkActive="active">Nota</a>
+  </nav>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>

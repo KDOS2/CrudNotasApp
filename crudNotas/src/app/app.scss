@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+
+.menu-horizontal {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  background-color: #000;
+  padding: 15px 0;
+  font-family: 'Comfortaa', cursive;
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: orange; 
+    }
+
+    &:active {
+      color: orange; 
+    }
+  }
+}
