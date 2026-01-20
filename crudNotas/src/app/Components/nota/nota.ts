@@ -95,6 +95,7 @@ export class Nota implements OnInit {
       id:0      
     });
     this.idNota = 0;
+    this.cd.detectChanges();
   }
 
   private GetEstudiantes(): void {

@@ -82,6 +82,7 @@ export class Profesor implements OnInit {
       id:0      
     });
     this.idTeacher = 0;
+    this.cd.detectChanges();
   }
 
   //#endregion

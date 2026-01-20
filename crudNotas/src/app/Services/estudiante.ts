@@ -53,7 +53,7 @@ export class Estudiante {
   ///eliminar estudiante
   public GetSDeleteEstudiante(id?:number): Observable<GeneralResponse>{
       
-  const urlRequest = `${this.server}${environment.eliminarEstudiante}/${id}`;
+  const urlRequest = `${this.server}${environment.eliminarEstudiante}${id}`;
           
   return this.http.delete<GeneralResponse>(urlRequest)
                   .pipe(

@@ -82,6 +82,7 @@ export class Estuidiante implements OnInit {
       id:0      
     });
     this.idStudent = 0;
+    this.cd.detectChanges();
   }
 
   //#endregion
