@@ -9,7 +9,7 @@
         <label for="nombre" class="form-label">Materia</label>
         <input type="text" id="nombre" class="form-control" formControlName="nombre" placeholder="Ingrese materia">
         <div *ngIf="noteForm.get('nombre')?.invalid && noteForm.get('nombre')?.touched" class="text-danger" style="color: orange">
-            Materia requerido
+            Materia requerida
         </div>
         </div>
 

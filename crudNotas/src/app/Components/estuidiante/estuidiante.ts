@@ -129,7 +129,10 @@ export class Estuidiante implements OnInit {
                     error: async (error: GetModelError) => {
                       error.method = `DeleteEstudiante - ${error.method}`;                      
                       this.loader.hide();
-                      this.toastr.error(this.messageConst.generalProblem);                      
+                      if(error.message.includes('ya cuenta con notas asignadas'))
+                        this.toastr.error(error.message);
+                      else  
+                        this.toastr.error(this.messageConst.generalProblem);
                     },
                     complete: async () => { console.info('<< LOGUP >>'); this.loader.hide(); this.CleanObject(); }
     });
