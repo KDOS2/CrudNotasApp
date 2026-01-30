@@ -10,8 +10,10 @@
         Nombre es requerido
       </div>
     </div>    
+    {{idStudent}}
+    {{studentForm.invalid}}
   <div class="text-center">
-    <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid || idStudent > 0">Guardar</button>
+    <button type="submit" class="btn btn-primary" [disabled]="studentForm.invalid">Guardar</button>
   </div>
 
     <div class="row mt-4" *ngIf="totalitems > 0">

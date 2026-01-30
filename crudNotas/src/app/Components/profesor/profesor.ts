@@ -51,7 +51,7 @@ export class Profesor implements OnInit {
   private InitForm(): void {
     this.teacherForm = this.fb.group({
       nombre: ['', Validators.required],
-      id: [0, Validators.required]      
+      id: [0]
     });
   }
 

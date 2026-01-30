@@ -51,7 +51,7 @@ export class Estuidiante implements OnInit {
   private InitForm(): void {
     this.studentForm = this.fb.group({
       nombre: ['', Validators.required],
-      id: [0, Validators.required]      
+      id: [0]      
     });
   }
 
@@ -79,7 +79,7 @@ export class Estuidiante implements OnInit {
   public CleanObject(){
     this.studentForm.reset();
     this.studentForm.patchValue({
-      id:0      
+      id: 0      
     });
     this.idStudent = 0;
     this.cd.detectChanges();
